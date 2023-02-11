@@ -1,22 +1,35 @@
-import { ref, computed, onMounted } from 'vue';
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('products', () => {
-    const products = ref([]);
+const fakeStoreUrl = 'https://fakestoreapi.com';
 
-    function getProducts() {
-        fetch('https://fakestoreapi.com/products')
-            .then((response) => response.json())
-            .then((data) => {
-                posts.value = data;
-                console.log('Data is fetched.');
-            })
-            .catch((error) => {
-                console.log(error);
+export const useProductStore = defineStore({
+    id: 'products',
+
+    state: () => ({
+        items: {},
+        ids: [],
+    }),
+
+    getters: {
+        list() {
+            return this.ids.map((i) => this.items[i]);
+        },
+
+        loaded() {
+            return this.ids.length > 0;
+        },
+    },
+
+    actions: {
+        async fetchAll() {
+            if (this.loaded) return;
+
+            const res = await fetch(`${fakeStoreUrl}/products`);
+            const data = await res.json();
+            this.ids = data.map((product) => {
+                this.items[product.id] = product;
+                return product.id;
             });
-    }
-    // Runs the very first time the store is used. i.e., when the store is initialized.
-    onMounted(getProducts);
-
-    return { products, getProducts };
+        },
+    },
 });
