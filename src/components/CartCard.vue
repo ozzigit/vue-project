@@ -63,7 +63,6 @@
 
 <script setup lang="ts">
 import { useCartStore } from '../stores/cart';
-// import { toCurrency } from '../shared/utils';
 
 const cartStore = useCartStore();
 

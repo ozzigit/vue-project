@@ -8,15 +8,26 @@ export const useProductStore = defineStore({
     state: () => ({
         items: {},
         ids: [],
+        filters: [],
     }),
 
     getters: {
         list() {
-            return this.ids.map((i) => this.items[i]);
+            // return this.ids.map((i) => this.items[i]);
+            if (this.filters.length > 0) {
+                let arr = this.ids.map((i) => this.items[i]);
+                return arr.filter((el) => this.filters.includes(el.category));
+            } else {
+                return this.ids.map((i) => this.items[i]);
+            }
         },
 
         loaded() {
             return this.ids.length > 0;
+        },
+        category_list() {
+            // this.return [...new Set(data.map(item => item.group))]
+            return new Set(this.ids.map((i) => this.items[i].category));
         },
     },
 
@@ -30,6 +41,17 @@ export const useProductStore = defineStore({
                 this.items[product.id] = product;
                 return product.id;
             });
+        },
+
+        add_filter(filter) {
+            if (this.filters.includes(filter)) {
+                this.filters.pop(filter);
+            } else {
+                this.filters.push(filter);
+            }
+        },
+        clear_filter() {
+            this.filters = [];
         },
     },
 });

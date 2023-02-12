@@ -31,7 +31,6 @@
 <script setup lang="ts">
 import { useCartStore } from '../stores/cart';
 import { useProductStore } from '../stores/products';
-// import { toCurrency } from '../shared/utils'
 
 const cartStore = useCartStore();
 defineProps<{ product }>();
