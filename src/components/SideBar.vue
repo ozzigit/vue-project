@@ -1,5 +1,5 @@
 <template>
-    <div class="flex">
+    <div class="hidden lg:inline md:inline">
         <div class="flex flex-col m-3 p-3 duration-300 bg-gray-800 shadow">
             <div class="space-y-3">
                 <div class="flex items-center justify-between">
