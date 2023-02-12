@@ -3,7 +3,7 @@
         <div v-if="!productStore.loaded">
             <CartCardSkeleton />
         </div>
-        <div class="card lg:card-side bordered" v-else-if="product">
+        <div class="card lg:card-side bordered bg-slate-800" v-else-if="product">
             <figure class="px-10 pt-10">
                 <img
                     :src="product.image"
@@ -39,8 +39,6 @@ import { useRoute } from 'vue-router';
 
 import { useCartStore } from '@/stores/cart';
 import { useProductStore } from '@/stores/products';
-// import { Product } from '../stores/products';
-// import { toCurrency } from '../shared/utils';
 
 import CartCardSkeleton from '../components/CartCardSkeleton.vue';
 
