@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@kyvg/vue3-notification": "^2.8.0",
     "autoprefixer": "^10.4.13",
     "daisyui": "^2.50.0",
     "pinia": "^2.0.28",

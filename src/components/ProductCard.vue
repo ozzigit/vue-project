@@ -1,4 +1,5 @@
 <template>
+    <Notifications group="foo-css" position="bottom left" :speed="500" />
     <div class="card bordered bg-slate-800">
         <figure class="px-8 pt-10">
             <img
@@ -28,10 +29,11 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { useCartStore } from '../stores/cart';
 import { useProductStore } from '../stores/products';
 
 const cartStore = useCartStore();
-defineProps<{ product }>();
+const props = defineProps({ product: {} });
+// defineProps<{ product }>();
 </script>

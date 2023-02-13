@@ -61,14 +61,13 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { useCartStore } from '../stores/cart';
 
 const cartStore = useCartStore();
 
-defineProps<{
-    cartProduct;
-}>();
+const props = defineProps({ cartProduct: {} });
+// defineProps<{ cartProduct; }>();
 </script>
 <style>
 .btn-close {

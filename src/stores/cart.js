@@ -2,6 +2,9 @@ import { defineStore } from 'pinia';
 import { CART_STORAGE } from '@/composables/usePersistCart';
 import { useProductStore } from './products';
 
+import { useNotification } from '@kyvg/vue3-notification';
+const { notify } = useNotification();
+
 export const useCartStore = defineStore({
     id: 'cart',
 
@@ -68,6 +71,11 @@ export const useCartStore = defineStore({
                     quantity: 1,
                 };
             }
+
+            notify({
+                type: 'success',
+                text: 'The product is added!',
+            });
         },
         remove(productId) {
             if (!this.contents[productId]) {
@@ -79,10 +87,19 @@ export const useCartStore = defineStore({
             if (this.contents[productId].quantity === 0) {
                 delete this.contents[productId];
             }
+
+            notify({
+                type: 'error',
+                text: 'The product is removed!',
+            });
         },
         clear(productId) {
             this.contents[productId].quantity = 0;
             delete this.contents[productId];
+            notify({
+                type: 'error',
+                text: 'The product is total removed!',
+            });
         },
     },
 });

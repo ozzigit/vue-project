@@ -1,4 +1,5 @@
 <template>
+    <notifications />
     <div class="drawer">
         <input id="drawer-input" type="checkbox" class="drawer-toggle" />
         <div class="bg-base-100 text-base-content min-h-screen drawer-content">
