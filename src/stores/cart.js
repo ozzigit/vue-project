@@ -70,12 +70,11 @@ export const useCartStore = defineStore({
                     productId,
                     quantity: 1,
                 };
+                notify({
+                    type: 'success',
+                    text: 'The product is added!',
+                });
             }
-
-            notify({
-                type: 'success',
-                text: 'The product is added!',
-            });
         },
         remove(productId) {
             if (!this.contents[productId]) {
@@ -88,10 +87,10 @@ export const useCartStore = defineStore({
                 delete this.contents[productId];
             }
 
-            notify({
-                type: 'error',
-                text: 'The product is removed!',
-            });
+            // notify({
+            //     type: 'error',
+            //     text: 'The product is removed!',
+            // });
         },
         clear(productId) {
             this.contents[productId].quantity = 0;
